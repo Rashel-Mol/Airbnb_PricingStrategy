@@ -1,4 +1,4 @@
-# Team 4 dPrep
+# Pricing Strategy Airbnb based on Negative Reviews
 
 Is there a significant positive correlation between the price of Airbnb accommodations and the relative number of negative reviews they get? 
 
