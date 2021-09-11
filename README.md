@@ -41,4 +41,3 @@ Point interested users to any related literature and/or documentation.
 
 Explain who has contributed to the repository. You can say it has been part of a class you've taken at Tilburg University.
 
-Test 900 iguess
