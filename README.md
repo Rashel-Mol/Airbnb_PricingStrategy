@@ -17,6 +17,8 @@ With the results of this analysis, Airbnb hosts can get more insights in whether
 
 (Motivate your research question or business problem. Clearly explain which problem is solved.)
 
+
+
 ## Method and results
 
 The method used to indicate the amount of negative reviews per accommodation is via sentiment analysis. 
