@@ -43,3 +43,4 @@ Point interested users to any related literature and/or documentation.
 
 Explain who has contributed to the repository. You can say it has been part of a class you've taken at Tilburg University.   
 
+This study is conducted for the [Data Preparation and Workflow Management](https://dprep.hannesdatta.com/) course of the TISEM department of Tilburg University. This course is part of the master Marketing Analytics program. The study is conducted by team 4 with the following members: [Noa Beekmans](https://github.com/noa-beekmans), [Pien Korteweg](https://github.com/eakorteweg), [Rashel Mol](https://github.com/Rashel-Mol), [Astrid Raaijmakers](https://github.com/AstridR97), [Amber Vermeer](https://github.com/AmberVermeer). Professor [Hannes Datta](https://github.com/hannesdatta) supervised the study and provided feedback. 
