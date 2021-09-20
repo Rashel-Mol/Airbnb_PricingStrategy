@@ -2,10 +2,6 @@
 
 # --- Libraries --- #
 
-library(readr)
-library(tidygraph)
-library(dplyr)
-library(tidyr)
 library(googledrive)
 
 # --- Download Data --- #

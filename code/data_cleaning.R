@@ -1,11 +1,7 @@
 # Data Cleaning Codes 
 
-# Libraries
-library(ff)
+# --- Libraries --- #
 
-read.csv2("data/listings.csv")
-
+# Load the data
+read.csv("data/listings.csv")
 read.csv("data/reviews.csv")
-
-summary(listings)
-summary(reviews)
