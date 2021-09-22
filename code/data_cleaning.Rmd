@@ -1,5 +1,6 @@
 ---
-title: "Clean_data"
+title: "Data Cleaning"
+author: "Astrid, Pien, Rashel, Noa and Amber"
 output: html_document
 ---
 
@@ -7,17 +8,75 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+*This document is used for data preparation. The variables will be explained and the raw datasets will be merged and cleaned.*
 
+--- 
 
-```{r cars}
-summary(cars)
+### 1. Cleaning and merging the Data
+
+#### 1.1 Cleaning Data
+There are two files, namely: listings and reviews, both refering to Airbnb data obtained from Amsterdam, the Netherlands. The dataset listings includes all information available about Airbnb accommodations. The dataset reviews includes the reviews users gave to particular Airbnb accommodation. We only keep the columns relevant for our study. 
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+library(tidyverse)
+library(dplyr)
+
+listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
+
+reviews_clean <- select(reviews, c(listing_id, comments, date)) %>%
+  filter(date > "2018-01-01")
+  # filter out too historical reviews 
+
+airbnb <- inner_join(listings_clean, reviews_clean, by = c("id" = "listing_id"))
+  # merge datasets
+
+# --- Price --- #
+
+airbnb$price_numeric <- 
+  # create a new column with price as numeric 
+  airbnb$price %>%
+  str_remove(fixed("$")) %>% 
+  str_remove(",") %>%
+  # remove the dollar sign and comma 
+  as.numeric(airbnb$price_numeric)
+
+airbnb <- subset(airbnb, select = -price)
+  # remove the price as character column 
+
+# Question: what do we have to do with outliers? E.g., prices that are equal to zero? 
+
+# --- Date --- #
+
+# Question: only keep year from the date 
+
+# --- Comments --- #
+
+# We have to check this with the text analysis (VADER) whether it is necessary to clean this 
+# Remove languages other than English
+# Remove observations with no text in reviews column  
+
+# --- Accommodates --- #
+
+# Question: what do we have to do with outliers? E.g., accommodates that are equal to zero?
+
+# --- Room Type --- #
+
+airbnb$room_type <- as.factor(airbnb$room_type)
+  # create vector for column room type 
+
+# --- Neighbourhood --- #
+
+airbnb$neighbourhood_cleansed <- as.factor(airbnb$neighbourhood_cleansed)
+  # create vector for column neighbourhood 
+
+summary(airbnb)
+
+# --- Check for duplicates --- # 
+
+airbnb <- airbnb %>% 
+  filter(!duplicated(airbnb))
+  # Note: first check for duplicates before removing days and months from the date column
+
+# To do: for every variable, explain what it is and make a summary for the numeric ones. 
 ```
-
-## Including Plots
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
 
