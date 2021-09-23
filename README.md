@@ -18,9 +18,7 @@ With the results of this analysis, Airbnb hosts can decide upon which price to c
 
 For this project, available Airbnb data is used from [Inside Airbnb](http://insideairbnb.com/get-the-data.html). Both datasets which were used are about Airbnb listings and reviews in Amsterdam, North Holland, The Netherlands. 
 
-![alt text](https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg)
-
-<img src="https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg" width="48">
+<img src="https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg" width="150">
 
 ## Method and results
 
