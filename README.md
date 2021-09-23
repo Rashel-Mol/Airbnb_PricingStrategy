@@ -14,12 +14,13 @@ Eventually, there is also a possibility that there is no significant correlation
 
 With the results of this analysis, Airbnb hosts can decide upon which price to charge for their accommodation with the results of this study in mind. Carefully setting the price of an accommodation can prevent dissatisfied customers and possible accompanying negative consequences.
 
-
 ## Data
 
 For this project, available Airbnb data is used from [Inside Airbnb](http://insideairbnb.com/get-the-data.html). Both datasets which were used are about Airbnb listings and reviews in Amsterdam, North Holland, The Netherlands. 
 
 ![alt text](https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg)
+
+<img src="https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg" width="48">
 
 ## Method and results
 
