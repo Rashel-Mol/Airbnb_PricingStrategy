@@ -14,9 +14,12 @@ Eventually, there is also a possibility that there is no significant correlation
 
 With the results of this analysis, Airbnb hosts can decide upon which price to charge for their accommodation with the results of this study in mind. Carefully setting the price of an accommodation can prevent dissatisfied customers and possible accompanying negative consequences.
 
-(Motivate your research question or business problem. Clearly explain which problem is solved.)
 
+## Data
 
+For this project, available Airbnb data is used from [Inside Airbnb](http://insideairbnb.com/get-the-data.html). Both datasets which were used are about Airbnb listings and reviews in Amsterdam, North Holland, The Netherlands. 
+
+![alt text](https://60days.nl/wp-content/uploads/2016/12/airbnb-amsterdam.jpg)
 
 ## Method and results
 
@@ -41,7 +44,5 @@ Explain to potential users how to run/replicate your workflow. Touch upon, if ne
 Point interested users to any related literature and/or documentation.
 
 ## About
-
-Explain who has contributed to the repository. You can say it has been part of a class you've taken at Tilburg University.   
 
 This study is conducted for the [Data Preparation and Workflow Management](https://dprep.hannesdatta.com/) course of the TISEM department of Tilburg University. This course is part of the master Marketing Analytics program. The study is conducted by team 4 with the following members: [Noa Beekmans](https://github.com/noa-beekmans), [Pien Korteweg](https://github.com/eakorteweg), [Rashel Mol](https://github.com/Rashel-Mol), [Astrid Raaijmakers](https://github.com/AstridR97), [Amber Vermeer](https://github.com/AmberVermeer). Professor [Hannes Datta](https://github.com/hannesdatta) supervised the study and provided feedback.
