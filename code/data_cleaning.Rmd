@@ -18,21 +18,30 @@ knitr::opts_chunk$set(echo = TRUE)
 There are two files, namely: listings and reviews, both refering to Airbnb data obtained from Amsterdam, the Netherlands. The dataset listings includes all information available about Airbnb accommodations. The dataset reviews includes the reviews users gave to particular Airbnb accommodation. We only keep the columns relevant for our study. 
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
+# --- Create a useable dataset --- #
+
+# Load the libraries 
 library(tidyverse)
 library(dplyr)
+library(lubridate)
 
-listings <- read_csv("../data/listings.csv")
-reviews <- read_csv("../data/reviews.csv")
+# Read in the files 
+listings <- read_csv("../listings.csv")
+reviews <- read_csv("../reviews.csv")
 
+# Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
 
+# Only keep necessary columns from reviews 
 reviews_clean <- select(reviews, c(listing_id, comments, date)) %>%
   filter(date > "2018-01-01")
   # filter out too historical reviews 
 
+# Merge files into one dataset 
 airbnb <- inner_join(listings_clean, reviews_clean, by = c("id" = "listing_id"))
-  # merge datasets
+```
 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Price --- #
 
 airbnb$price_numeric <- 
@@ -43,43 +52,76 @@ airbnb$price_numeric <-
   # remove the dollar sign and comma 
   as.numeric(airbnb$price_numeric)
 
+# remove the price as character column 
 airbnb <- subset(airbnb, select = -price)
-  # remove the price as character column 
 
-# Question: what do we have to do with outliers? E.g., prices that are equal to zero? 
+# rename the column price_numeric to price
+names(airbnb)[8] <- "price"
 
+# make NA's of the 0 
+airbnb$price[airbnb$price == 0] <- NA
+```
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Date --- #
 
-# Question: only keep year from the date 
+# Remove month and day 
+airbnb$date <- lubridate:::year(as.Date(airbnb$date))
 
+# Rename the column 
+names(airbnb)[7] <- "year"
+```
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Comments --- #
 
-# We have to check this with the text analysis (VADER) whether it is necessary to clean this 
-# Remove languages other than English
-# Remove observations with no text in reviews column  
+# This column involves the text analysis, which is the next step of our project
+```
 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Accommodates --- #
 
-# Question: what do we have to do with outliers? E.g., accommodates that are equal to zero?
+# make NA's of the 0 
+airbnb$accommodates[airbnb$accommodates == 0] <- NA
+```
 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Room Type --- #
 
+# create vector for column room type 
 airbnb$room_type <- as.factor(airbnb$room_type)
-  # create vector for column room type 
+```
 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Neighbourhood --- #
 
+# create vector for column neighbourhood 
 airbnb$neighbourhood_cleansed <- as.factor(airbnb$neighbourhood_cleansed)
-  # create vector for column neighbourhood 
 
-summary(airbnb)
+# Rename the column 
+names(airbnb)[3] <- "neighbourhood"
+```
 
-# --- Check for duplicates --- # 
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+# --- Check for duplicates and NA's--- # 
 
+# Remove duplicates
 airbnb <- airbnb %>% 
   filter(!duplicated(airbnb))
-  # Note: first check for duplicates before removing days and months from the date column
 
-# To do: for every variable, explain what it is and make a summary for the numeric ones. 
+# Remove NA's 
+airbnb <- 
+  na.omit(airbnb)
+```
+
+```{r}
+# --- Summary Statistics --- #
+summary(airbnb$name)
+summary(airbnb$neighbourhood)
+summary(airbnb$room_type)
+summary(airbnb$accommodates)
+summary(airbnb$comments)
+summary(airbnb$year)
+summary(airbnb$price)
 ```
 
