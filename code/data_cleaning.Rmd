@@ -21,6 +21,9 @@ There are two files, namely: listings and reviews, both refering to Airbnb data 
 library(tidyverse)
 library(dplyr)
 
+listings <- read_csv("../data/listings.csv")
+reviews <- read_csv("../data/reviews.csv")
+
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
 
 reviews_clean <- select(reviews, c(listing_id, comments, date)) %>%
