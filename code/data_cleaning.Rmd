@@ -124,4 +124,31 @@ summary(airbnb$comments)
 summary(airbnb$year)
 summary(airbnb$price)
 ```
+#### Variables in dataset
+
+| Attribute | Definition | Example | 
+| :---- | :---- | :---- | 
+| id | An identifier associated with each listing | `17519833` |
+| name | Name of the listing | `Romantic, stylish B&B houseboat in canal district` | 
+| neighbourhood | Neighbourhood where the listing is | `Centrum-West` |
+| room_type | Type of room | `Hotel room` | 
+| accommodates | Number of people it accommodates | `2` | 
+| comments | Review of one person about the Airbnb listing | `Great location and great host.` | 
+| year | Year that the review was written | `2019` | 
+| price | Price per night in euros | `106` | 
+
+```{r}
+# --- Summary Statistics --- #
+summary(airbnb)
+```
+
+
+
+```{r}
+# --- Table of summary statistics --- #
+library(gtsummary)
+table_summary_statistics <- tbl_summary(airbnb)
+table_summary_statistics
+```
+
 
