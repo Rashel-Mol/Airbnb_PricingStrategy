@@ -8,19 +8,13 @@
 
 # Library's 
 library(readr)
-library(dplyr)
-library(tibble)
-library(tidyr)
-library(tidytext)
-library(ggplot2)
 library(textstem)
 library(vader)
 library(yardstick)
 library(stm)
 
 # Create an unique id to each row of the data
-## airbnb_reviews <-
-    ## rownames_to_columns("id")
+airbnb <- rownames_to_columns("unique_id")
 
 # Only keep necessary rows
 ## airbnb_sentiment <-
