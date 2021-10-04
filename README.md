@@ -5,7 +5,12 @@ Do higher prices of Airbnb accommodations result in a higher relative number of 
 
 ## Motivation
 
-The success of online marketplaces depends not only on how easily buyers can find the right sellers for them, but also on the level of trust there is prevalent. Feedback systems can help in establishing this trust (Tadelis, 2016). For the design of feedback systems, it is important to understand how reviews are generated and whether these can be influenced by agents (Carnehl et al., 2021). This research will focus on how prices may influence the relative amount of negative reviews for Airbnb accommodations. In line with Carnehl et al. (2021), it is expected that higher prices may result in a higher relative amount of negative reviews. This can be explained by the fact that higher prices lead to higher expectations for consumers which in turn may result in them being easier dissatisfied. 
+The success of online marketplaces depends not only on how easily buyers can find the right sellers for them, but also on the level of trust there is prevalent. Feedback systems can help in establishing this trust ([Tadelis, 2016](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080315-015325)). For the design of feedback systems, it is important to understand how reviews are generated and whether these can be influenced by agents ([Carnehl et al., 2021]
+
+(http://www.kevintran.eu/files/airbnb_ratings_paper.pdf)). This research will focus on how prices may influence the relative amount of negative reviews for Airbnb accommodations. [Carnehl et al. (2021)](http://www.kevintran.eu/files/airbnb_ratings_paper.pdf) explains three consecutive consequences for pricing and reviews:
+- High prices lead to high expectations
+- High expectations lead to more chances for dissatisfaction
+- Dissatisfaction leads to more negative reviews
 
 Concretely, this study investigates the relationship between price and negative reviews. In this way, it can be studied whether:
 - Charging a higher price is a risk in terms of setting the expectations too high, resulting in more negative reviews or;
