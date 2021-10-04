@@ -11,10 +11,11 @@ library(tidyverse)
 library(dplyr)
 library(lubridate)
 library(gtsummary)
+library(readr)
 
 # Read in the files 
-listings <- read_csv("../listings.csv")
-reviews <- read_csv("../reviews.csv")
+listings <- read_csv("data/listings.csv")
+reviews <- read_csv("data/reviews.csv")
 
 # Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
@@ -87,7 +88,10 @@ airbnb <-
   na.omit(airbnb)
   # At the beginning we checked for NA's, which did not exist in the dataset 
   # We made NA's of the 0 values in the columns price and accommodates
-  # In this step we remove those jointly 
+  # In this step we remove those jointly
+
+# Save airbnb as .csv
+write.csv(airbnb, "data/airbnb.csv", row.names = FALSE)
 
 # --- Summary Statistics --- #
 
