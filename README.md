@@ -5,9 +5,9 @@ Do higher prices of Airbnb accommodations result in a higher relative number of 
 
 ## Motivation
 
-The success of online marketplaces depends not only on how easily buyers can find the right sellers for them, but also on the level of trust there is prevalent. Feedback systems can help in establishing this trust ([Tadelis, 2016](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080315-015325)). For the design of feedback systems, it is important to understand how reviews are generated and whether these can be influenced by agents ([Carnehl et al., 2021]
+The success of online marketplaces depends not only on how easily buyers can find the right sellers for them, but also on the level of trust there is prevalent. Feedback systems can help in establishing this trust ([Tadelis, 2016](https://www.annualreviews.org/doi/abs/10.1146/annurev-economics-080315-015325)). For the design of feedback systems, it is important to understand how reviews are generated and whether these can be influenced by agents ([Carnehl et al., 2021](http://www.kevintran.eu/files/airbnb_ratings_paper.pdf)).
 
-(http://www.kevintran.eu/files/airbnb_ratings_paper.pdf)). This research will focus on how prices may influence the relative amount of negative reviews for Airbnb accommodations. [Carnehl et al. (2021)](http://www.kevintran.eu/files/airbnb_ratings_paper.pdf) explains three consecutive consequences for pricing and reviews:
+This research will focus on how prices may influence the relative amount of negative reviews for Airbnb accommodations. [Carnehl et al. (2021)](http://www.kevintran.eu/files/airbnb_ratings_paper.pdf) explains three consecutive consequences for pricing and reviews:
 - High prices lead to high expectations
 - High expectations lead to more chances for dissatisfaction
 - Dissatisfaction leads to more negative reviews
