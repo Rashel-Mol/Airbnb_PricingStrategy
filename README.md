@@ -27,7 +27,7 @@ For this project, available Airbnb data is used from [Inside Airbnb](http://insi
 
 ## Method and results
 
-The method used to indicate the amount of negative reviews per accommodation is a sentiment analysis. Sentiment analysis is used to identify how sentiments are used in text and if they indicate a positive or negative opinion toward the subject ([Nasukawa, 2003](https://dl.acm.org/doi/pdf/10.1145/945645.945658))(A). We will use this to classify whether a review is positive, negative or neutral. 
+The method used to indicate the amount of negative reviews per accommodation is a sentiment analysis. Sentiment analysis is used to identify how sentiments are used in text and if they indicate a positive or negative opinion toward the subject ([Nasukawa, 2003](https://dl.acm.org/doi/pdf/10.1145/945645.945658)). We will use this to classify whether a review is positive, negative or neutral. 
 
 To expand the sentiment analysis, we will also make use of a text analysis. By using a text analysis we will identify 10 topics amongst all reviews generated. With this we can see what topic is defined in the review and then see whether there are positive, negative or neutral reviews associated with this topic.
 
