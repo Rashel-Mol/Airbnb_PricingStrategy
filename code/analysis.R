@@ -1,5 +1,9 @@
-# --- Text Analysis --- #
-# This code is an example of codes that can be used for our text analysis
+#####################
+#####################
+### TEXT ANALYSIS ###
+#####################
+#####################
+
 # VADER Sentiment lexicon is used to perform sentiment analysis, i.e. classifying text as positive, negative to neutral tone.
 
 # Library's 
@@ -13,10 +17,6 @@ library(textstem)
 library(vader)
 library(yardstick)
 library(stm)
-
-# Load the data 
-## airbnb_reviews <-
-    ## read_csv('data/DOCNAME') %>%
 
 # Create an unique id to each row of the data
 ## airbnb_reviews <-

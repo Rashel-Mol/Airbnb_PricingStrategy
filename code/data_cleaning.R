@@ -1,29 +1,16 @@
----
-title: "Data Cleaning"
-author: "Astrid, Pien, Rashel, Noa and Amber"
-output: html_document
----
+#####################
+#####################
+### CLEANING DATA ###
+#####################
+#####################
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-*This document is used for data preparation. The variables will be explained and the raw datasets will be merged and cleaned.*
-
---- 
-
-### 1. Cleaning and merging the Data
-
-#### 1.1 Cleaning Data
-There are two files, namely: listings and reviews, both refering to Airbnb data obtained from Amsterdam, the Netherlands. The dataset listings includes all information available about Airbnb accommodations. The dataset reviews includes the reviews users gave to particular Airbnb accommodation. We only keep the columns relevant for our study. 
-
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Create a useable dataset --- #
 
 # Load the libraries 
 library(tidyverse)
 library(dplyr)
 library(lubridate)
+library(gtsummary)
 
 # Read in the files 
 listings <- read_csv("../listings.csv")
@@ -39,9 +26,7 @@ reviews_clean <- select(reviews, c(listing_id, comments, date)) %>%
 
 # Merge files into one dataset 
 airbnb <- inner_join(listings_clean, reviews_clean, by = c("id" = "listing_id"))
-```
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Price --- #
 
 airbnb$price_numeric <- 
@@ -56,53 +41,41 @@ airbnb$price_numeric <-
 airbnb <- subset(airbnb, select = -price)
 
 # rename the column price_numeric to price
-names(airbnb)[8] <- "price"
+airbnb <- rename(airbnb, price = price_numeric)
 
 # make NA's of the 0 
 airbnb$price[airbnb$price == 0] <- NA
-```
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Date --- #
 
 # Remove month and day 
 airbnb$date <- lubridate:::year(as.Date(airbnb$date))
 
 # Rename the column 
-names(airbnb)[7] <- "year"
-```
+airbnb <- rename(airbnb, year = date)
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Comments --- #
 
 # This column involves the text analysis, which is the next step of our project
-```
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Accommodates --- #
 
 # make NA's of the 0 
 airbnb$accommodates[airbnb$accommodates == 0] <- NA
-```
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Room Type --- #
 
 # create vector for column room type 
 airbnb$room_type <- as.factor(airbnb$room_type)
-```
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Neighbourhood --- #
 
 # create vector for column neighbourhood 
 airbnb$neighbourhood_cleansed <- as.factor(airbnb$neighbourhood_cleansed)
 
 # Rename the column 
-names(airbnb)[3] <- "neighbourhood"
-```
+airbnb <- rename(airbnb, neighbourhood = neighbourhood_cleansed)
 
-```{r message=FALSE, warning=FALSE, eval=FALSE}
 # --- Check for duplicates and NA's--- # 
 
 # Remove duplicates
@@ -112,10 +85,12 @@ airbnb <- airbnb %>%
 # Remove NA's 
 airbnb <- 
   na.omit(airbnb)
-```
+  # At the beginning we checked for NA's, which did not exist in the dataset 
+  # We made NA's of the 0 values in the columns price and accommodates
+  # In this step we remove those jointly 
 
-```{r}
 # --- Summary Statistics --- #
+
 summary(airbnb$name)
 summary(airbnb$neighbourhood)
 summary(airbnb$room_type)
@@ -123,32 +98,12 @@ summary(airbnb$accommodates)
 summary(airbnb$comments)
 summary(airbnb$year)
 summary(airbnb$price)
-```
-#### Variables in dataset
 
-| Attribute | Definition | Example | 
-| :---- | :---- | :---- | 
-| id | An identifier associated with each listing | `17519833` |
-| name | Name of the listing | `Romantic, stylish B&B houseboat in canal district` | 
-| neighbourhood | Neighbourhood where the listing is | `Centrum-West` |
-| room_type | Type of room | `Hotel room` | 
-| accommodates | Number of people it accommodates | `2` | 
-| comments | Review of one person about the Airbnb listing | `Great location and great host.` | 
-| year | Year that the review was written | `2019` | 
-| price | Price per night in euros | `106` | 
-
-```{r}
 # --- Summary Statistics --- #
+
 summary(airbnb)
-```
 
-
-
-```{r}
 # --- Table of summary statistics --- #
-library(gtsummary)
+
 table_summary_statistics <- tbl_summary(airbnb)
 table_summary_statistics
-```
-
-
