@@ -13,15 +13,25 @@ library(stm)
 library(ggplot2)
 library(ggraph)
 
+# --- Sampling --- #
+
+# Because of the big dataset, we make use of a prototype which exist of a sample of 1000 observations
+
+set.seed(1234567890)
+# set seed so that everyone gets the same sample after running
+
+sample_airbnb <- airbnb[sample.int(nrow(airbnb),1000),]
+# made a sample of 1000 observations 
+
 # --- VADER Sentiment lexicon --- # 
 
 # Create an unique id to each row of the data
-airbnb <- airbnb %>%
+sample_airbnb <- sample_airbnb %>%
     rownames_to_column("unique_id")
 
 # Only keep necessary rows
 airbnb_sentiment <- 
-    airbnb %>%
+    sample_airbnb %>%
     select(unique_id, comments)
 
 # Using VADER to classify multiple review's sentiment in one go, note: VADER does not need any cleaning
@@ -37,24 +47,24 @@ vader_sent2 <-
     filter(word_scores != 'ERROR') %>%
     # classify as positive or negative
     mutate(vader_class = case_when(
-        compound < -0.05 - "negative",
-        compound > 0.05 - "positive",
+        compound < -0.05 ~ "negative",
+        compound > 0.05 ~ "positive",
         # the final case must always be written as TRUE - something
-        TRUE - "neutral")) %>%
+        TRUE ~ "neutral")) %>%
     select(unique_id, vader_class)
 
 # Merge the sentiment classification back into the airbnb_sentiment data
 airbnb_sentiment <-
     airbnb_sentiment %>%
     mutate(unique_id = as.integer(unique_id)) %>%
-    inner_join(vader_sent2, by = "unique_id")
+    left_join(vader_sent2, by = "unique_id")
 
 # Plot the results
 vader_sent3 %>%
     ggplot(aes(x = vader_class)) +
     geom_bar()
 
-ggsave("output/plot_vader_sent.pdf")
+ggsave("gen/output/plot_vader_sent.pdf")
 
 # --- Topic models --- # 
 
@@ -103,8 +113,7 @@ tidy_reviews <-
     tidy_reviews %>%
     filter(word %in% word_counts$word)
 
-write_csv(tidy_reviews, 'data/tidy_reviews.csv')
-
+write_csv(tidy_reviews, 'gen/temp/tidy_reviews.csv')
 
 # For each review count the number of times a word occurs in it
 word_counts <-
