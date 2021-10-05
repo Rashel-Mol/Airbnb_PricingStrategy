@@ -13,6 +13,12 @@ library(stm)
 library(ggplot2)
 library(ggraph)
 
+# --- Unique ID --- #
+
+# Create an unique id to each row of the data
+#airbnb <- airbnb %>%
+    #rownames_to_column("unique_id")
+
 # --- Sampling --- #
 
 # Because of the big dataset, we make use of a prototype which exist of a sample of 1000 observations
@@ -20,19 +26,15 @@ library(ggraph)
 set.seed(1234567890)
 # set seed so that everyone gets the same sample after running
 
-sample_airbnb <- airbnb[sample.int(nrow(airbnb),1000),]
+sample_airbnb <- airbnb[sample.int(nrow(airbnb),500),]
 # made a sample of 1000 observations 
 
 # --- VADER Sentiment lexicon --- # 
 
-# Create an unique id to each row of the data
-sample_airbnb <- sample_airbnb %>%
-    rownames_to_column("unique_id")
-
 # Only keep necessary rows
 airbnb_sentiment <- 
     sample_airbnb %>%
-    select(unique_id, comments)
+    select(comments)
 
 # Using VADER to classify multiple review's sentiment in one go, note: VADER does not need any cleaning
 vader_sent <-
@@ -42,7 +44,7 @@ vader_sent <-
 vader_sent2 <-
     vader_sent %>%
     # create a row number to merge it back into the original data
-    rowid_to_column("unique_id") %>%
+    # rowid_to_column("unique_id") %>%
     # remove any errors
     filter(word_scores != 'ERROR') %>%
     # classify as positive or negative
@@ -51,16 +53,16 @@ vader_sent2 <-
         compound > 0.05 ~ "positive",
         # the final case must always be written as TRUE - something
         TRUE ~ "neutral")) %>%
-    select(unique_id, vader_class)
+    select(vader_class, text)
 
 # Merge the sentiment classification back into the airbnb_sentiment data
-airbnb_sentiment <-
-    airbnb_sentiment %>%
-    mutate(unique_id = as.integer(unique_id)) %>%
-    left_join(vader_sent2, by = "unique_id")
+sample_airbnb <-
+    sample_airbnb %>%
+    #mutate(unique_id = as.integer(unique_id)) %>%
+    inner_join(vader_sent2, by = c("comments" = "text"))
 
 # Plot the results
-vader_sent3 %>%
+sample_airbnb %>%
     ggplot(aes(x = vader_class)) +
     geom_bar()
 
