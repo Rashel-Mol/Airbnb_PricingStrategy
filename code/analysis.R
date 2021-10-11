@@ -15,16 +15,9 @@ library(ggraph)
 library(tidytext)
 library(stringr)
 
-# --- Unique ID --- #
-
-# Create an unique id to each row of the data
-#airbnb <- airbnb %>%
-    #rownames_to_column("unique_id")
-
 # --- Sampling --- #
 
-# Because of the big dataset, we make use of a prototype which exist of a sample of 1000 observations
-
+# Because of the big dataset, we make use of a prototype which exist of a sample of 500 observations
 set.seed(1234567890)
 # set seed so that everyone gets the same sample after running
 
@@ -168,12 +161,16 @@ airbnb_sentiment <-
 
 airbnb_sentiment <-
     airbnb_sentiment %>%
-    mutate(topic.x = case_when(
-        topic.x == 1 ~ "Amenity",
-        topic.x == 2 ~ "Host",
-        topic.x == 3 ~ "Activity",
-        topic.x == 4 ~ "Location",
+    mutate(topic = case_when(
+        topic == 1 ~ "Amenity",
+        topic == 2 ~ "Host",
+        topic == 3 ~ "Activity",
+        topic == 4 ~ "Location",
         TRUE ~ "Distance"
     ))
 
+airbnb_sentiment %>%
+    ggplot(aes(x = topic)) +
+    geom_bar()
 
+ggsave("gen/output/sentiment_topics.pdf")

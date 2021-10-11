@@ -86,6 +86,8 @@ ggplot(airbnb) +
 # the boxplot shows 1 extreme value of approximately 8000
 # this value has been manually verified on the Airbnb website
 
+ggsave("gen/output/boxplot_outliers.pdf")
+
 # --- Check for duplicates and NA's --- # 
 
 # Remove duplicates
@@ -102,7 +104,7 @@ airbnb <-
 # Save airbnb as .csv
 write.csv(airbnb, "data/airbnb.csv", row.names = FALSE)
 
-# --- Summary Statistics --- #
+# --- Descriptive Summary Statistics --- #
 
 summary(airbnb$name)
 summary(airbnb$neighbourhood)
