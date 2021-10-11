@@ -43,11 +43,29 @@ In the code folder a makefile is included which will enable the user to automati
 
 ## Running instructions
 
-Explain to potential users how to run/replicate your workflow. Touch upon, if necessary, the required input data, which (secret) credentials are required (and how to obtain them), which software tools are needed to run the workflow (including links to the installation instructions), and how to run the workflow. Make use of subheaders where appropriate.
+- Install [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/).
+- Install [R and RStudio](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/).
+- In R, the following packages should be installed by copy/pasting and running the following code snippet:
+```
+install.packages("googledrive")
+install.packages("readr")
+install.packages("tidyverse")
+install.packages("dplyr")
+install.packages("lubridate")
+install.packages("gtsummary")
+install.packages("textstem")
+install.packages("vader")
+install.packages("yardstick")
+install.packages("stm")
+install.packages("ggplot2")
+install.packages("ggraph")
+```
+- Required data will be downloaded from a Google Drive document. Thus, you should have a Google Drive account to access the data files.
 
 ## More resources
 
-Point interested users to any related literature and/or documentation.
+- Additional information about the Airbnb locations in [Amsterdam](http://insideairbnb.com/amsterdam/).
+- Research on [reviews and price on online platforms in Boston](https://scholar.google.com/scholar?output=instlink&q=info:ZXRx9yxPYn8J:scholar.google.com/&hl=en&as_sdt=0,5&scillfp=10945875589668552579&oi=lle). 
 
 ## About
 
