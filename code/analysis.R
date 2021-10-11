@@ -176,3 +176,4 @@ airbnb_sentiment <-
         TRUE ~ "Distance"
     ))
 
+
