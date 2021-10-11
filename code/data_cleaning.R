@@ -12,6 +12,7 @@ library(dplyr)
 library(lubridate)
 library(gtsummary)
 library(readr)
+library(ggplot2)
 
 # Read in the files 
 listings <- read_csv("data/listings.csv")
@@ -77,7 +78,15 @@ airbnb$neighbourhood_cleansed <- as.factor(airbnb$neighbourhood_cleansed)
 # Rename the column 
 airbnb <- rename(airbnb, neighbourhood = neighbourhood_cleansed)
 
-# --- Check for duplicates and NA's--- # 
+# --- Check for outliers --- #
+ggplot(airbnb) +
+  aes(x = "", y = price) +
+  geom_boxplot(fill = "#0c4c8a") +
+  theme_minimal()
+# the boxplot shows 1 extreme value of approximately 8000
+# this value has been manually verified on the Airbnb website
+
+# --- Check for duplicates and NA's --- # 
 
 # Remove duplicates
 airbnb <- airbnb %>% 
