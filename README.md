@@ -37,7 +37,9 @@ Second, summarize your results concisely. Make use of subheaders where appropria
 
 ## Repository overview
 
-Provide an overview of the directory structure and files.
+This repository consists of three folders (code, docs, and gen/output), and three files (.gitignore, README.md, and dprep21.Rproj). The motivation, instruction and results of this project are to be found in the README.md file, which is the currently displayed file. The data for this project is stored in a cloud service, which can be downloaded using the download_data.r script provided in the code. When running the code a new folder 'data' will be generated where the raw data will be stored.
+
+In the code folder a makefile is included which will enable the user to automatically run the code included for this project in order to build the project and view the results.
 
 ## Running instructions
 
