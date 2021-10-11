@@ -45,6 +45,13 @@ In the code folder a makefile is included which will enable the user to automati
 
 Explain to potential users how to run/replicate your workflow. Touch upon, if necessary, the required input data, which (secret) credentials are required (and how to obtain them), which software tools are needed to run the workflow (including links to the installation instructions), and how to run the workflow. Make use of subheaders where appropriate.
 
+### Required software
+The data required for this project is available on [Inside Airbnb](http://insideairbnb.com/get-the-data.html), the datasets used in this project are [listings.csv](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/listings.csv) and [Inside Airbnb](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/reviews.csv). There is a script included which allows access to the Google Drive where the exact set used in this project is stored.
+
+[Rstudio](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/) is needed in order to run the R-files in this directory and [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/) is required in order to run the automated pipeline. Using this 'build tool' enables easier reproduction of the workflow and allows for more transparancy in the project
+
+### Running the workflow
+
 ## More resources
 
 Point interested users to any related literature and/or documentation.
