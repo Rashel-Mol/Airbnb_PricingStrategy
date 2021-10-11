@@ -43,7 +43,9 @@ In the code folder a makefile is included which will enable the user to automati
 
 ## Running instructions
 
-- Install [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/).
+### Required software
+
+- Install [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/). Make is required in order to run the automated pipeline.   Using this 'build tool' enables easier reproduction of the workflow and allows for more transparancy in the project
 - Install [R and RStudio](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/).
 - In R, the following packages should be installed by copy/pasting and running the following code snippet:
 ```
@@ -62,10 +64,9 @@ install.packages("ggraph")
 ```
 - Required data will be downloaded from a Google Drive document. Thus, you should have a Google Drive account to access the data files.
 
-### Required software
-The data required for this project is available on [Inside Airbnb](http://insideairbnb.com/get-the-data.html), the datasets used in this project are [listings.csv](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/listings.csv) and [Inside Airbnb](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/reviews.csv). There is a script included which allows access to the Google Drive where the exact set used in this project is stored.
+### Collecting the data
 
-[Rstudio](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/) is needed in order to run the R-files in this directory and [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/) is required in order to run the automated pipeline. Using this 'build tool' enables easier reproduction of the workflow and allows for more transparancy in the project
+The data required for this project is available on [Inside Airbnb](http://insideairbnb.com/get-the-data.html), the datasets used in this project are [listings.csv](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/listings.csv) and [Inside Airbnb](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/reviews.csv). There is a script included which allows access to the Google Drive where the exact set used in this project is stored.
 
 ### Running the workflow
 
