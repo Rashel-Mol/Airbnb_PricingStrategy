@@ -12,6 +12,8 @@ library(yardstick)
 library(stm)
 library(ggplot2)
 library(ggraph)
+library(tidytext)
+library(stringr)
 
 # --- Unique ID --- #
 
@@ -61,6 +63,15 @@ sample_airbnb <-
     #mutate(unique_id = as.integer(unique_id)) %>%
     inner_join(vader_sent2, by = c("comments" = "text"))
 
+# Remove duplicates
+# There are two similar comments for two different id's, namely: Perfect. 
+# The innerjoin funtion therefore copied these comments, so we now have 2 extra observations in the dataset
+# We remove these, so we have a sample of 500 unique observations again, by removing the duplicates
+# Note that this cannot be done for all analysis; other ways to do this are creating unique ID's on forehand. 
+sample_airbnb <- 
+    sample_airbnb %>% 
+    filter(!duplicated(sample_airbnb))
+
 # Plot the results
 sample_airbnb %>%
     ggplot(aes(x = vader_class)) +
@@ -68,13 +79,11 @@ sample_airbnb %>%
 
 ggsave("gen/output/plot_vader_sent.pdf")
 
-# --- Topic models --- # 
+# --- Prepare Data for Topic Models --- # 
 
 # We pick a sample of the dataset to increase efficiency 
 set.seed(1234567890)
-seed_users <- 
-    airbnb_sentiment %>%
-    sample(250)
+airbnb_sentiment <- airbnb[sample.int(nrow(airbnb_sentiment),250),]
 
 # Clean the data
 tidy_reviews <-
@@ -87,23 +96,25 @@ nums <- tidy_reviews %>%
     filter(str_detect(word, "^[0-9]")) %>%
     # filter out numerics 
     select(word) %>%
+    # only keep the column with unnested words
     unique()
     # only keep unique words for every unique id 
 
+# search for most frequently used words 
+freq_words <- 
+    tidy_reviews %>% count(word)
+
 # delete words that are frequent but provide little information for analysis
+# but are not in the stop_word package 
 my_stop_words <- tibble(
     word = c(
-        "#LOOK", "#FOR", "#WORDS"
-    ),
-    lexicon = "one of the words"
-)
+        "stay", "stayed"))
 
 tidy_reviews <-
     tidy_reviews %>%
     anti_join(stop_words) %>%
     anti_join(my_stop_words) %>%
-    anti_join(nums, by = "word") %>%
-    select()-#the word we put in lexicon, -source
+    anti_join(nums, by = "word")
 
 word_counts <- 
     tidy_reviews %>%
@@ -118,7 +129,50 @@ tidy_reviews <-
 write_csv(tidy_reviews, 'gen/temp/tidy_reviews.csv')
 
 # For each review count the number of times a word occurs in it
-word_counts <-
-    airbnb %>%
-    count(id, comments) %>%
+doc_word_counts <-
+    tidy_reviews %>%
+    count(id, word) %>%
     ungroup()
+
+# Transform the word counts into a document term matrix, using the stm package 
+reviews_dtm <-
+    doc_word_counts %>%
+    cast_sparse(id, word, n)
+
+# --- Estimate Topic Model --- #
+
+reviews_lda <-
+    stm(reviews_dtm,
+        K = 5,
+        seed = 123456789)
+
+# Print out the top words associated with each topic 
+labelTopics(reviews_lda)
+
+# Find the topic that each review is most likely to belong to 
+reviews_gamma <- 
+    tidy(reviews_lda,
+         matrix = "gamma",
+         document_names = rownames(reviews_dtm)
+    ) %>%
+    rename(id = document) %>%
+    group_by(id) %>%
+    slice_max(gamma) %>%
+    select(-gamma)
+
+airbnb_sentiment$id <- as.character(airbnb_sentiment$id)
+
+airbnb_sentiment <-
+    airbnb_sentiment %>%
+    inner_join(reviews_gamma, by = "id")
+
+airbnb_sentiment <-
+    airbnb_sentiment %>%
+    mutate(topic.x = case_when(
+        topic.x == 1 ~ "Amenity",
+        topic.x == 2 ~ "Host",
+        topic.x == 3 ~ "Activity",
+        topic.x == 4 ~ "Location",
+        TRUE ~ "Distance"
+    ))
+
