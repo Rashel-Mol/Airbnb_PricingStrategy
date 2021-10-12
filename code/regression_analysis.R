@@ -8,6 +8,8 @@
 
 library(broom)
 library(modelsummary)
+library(Hmisc)
+library(corrplot)
 
 # --- Linear Regression --- # 
 
@@ -24,3 +26,6 @@ msummary(regr)
 
 # --- Collinearity --- # 
 
+airbnb_cor <- rcorr(as.matrix(sample_airbnb[,8])) #8 is price, compound?
+round(airbnb_cor$P, 3) #to see whether correlations are significant
+corrplot(cor(sample_airbnb[,8]), method="number") #8 is price, compound?
