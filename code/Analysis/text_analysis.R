@@ -31,7 +31,9 @@ set.seed(1234567890)
 
 
 # We did make a sample of 500 observations. 
-sample_airbnb <- airbnb[sample.int(nrow(airbnb),500),]
+samplesize = nrow(airbnb)
+if (prototype) samplesize = 500
+sample_airbnb <- airbnb[sample.int(nrow(airbnb),samplesize),]
 
 # --- VADER Sentiment lexicon --- # 
 
