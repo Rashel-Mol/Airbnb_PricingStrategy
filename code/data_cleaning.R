@@ -13,6 +13,7 @@ library(lubridate)
 library(gtsummary)
 library(readr)
 library(ggplot2)
+library(summarytools)
 
 # Read in the files 
 listings <- read_csv("data/listings.csv")
@@ -32,20 +33,20 @@ airbnb <- inner_join(listings_clean, reviews_clean, by = c("id" = "listing_id"))
 # --- Price --- #
 
 airbnb$price_numeric <- 
-  # create a new column with price as numeric 
+  # Rreate a new column with price as numeric 
   airbnb$price %>%
   str_remove(fixed("$")) %>% 
   str_remove(",") %>%
-  # remove the dollar sign and comma 
+  # Remove the dollar sign and comma 
   as.numeric(airbnb$price_numeric)
 
-# remove the price as character column 
+# Remove the price as character column 
 airbnb <- subset(airbnb, select = -price)
 
-# rename the column price_numeric to price
+# Rename the column price_numeric to price
 airbnb <- rename(airbnb, price = price_numeric)
 
-# make NA's of the 0 
+# Make NA's of the 0 
 airbnb$price[airbnb$price == 0] <- NA
 
 # --- Date --- #
@@ -62,12 +63,12 @@ airbnb <- rename(airbnb, year = date)
 
 # --- Accommodates --- #
 
-# make NA's of the 0 
+# Make NA's of the 0 
 airbnb$accommodates[airbnb$accommodates == 0] <- NA
 
 # --- Room Type --- #
 
-# create vector for column room type 
+# Create vector for column room type 
 airbnb$room_type <- as.factor(airbnb$room_type)
 
 # --- Neighbourhood --- #
@@ -109,10 +110,25 @@ write.csv(airbnb, "data/airbnb.csv", row.names = FALSE)
 summary(airbnb)
 
 ## ID 
+#ID is a numeric variable. Every listing has an unique ID. 
+
 ## Name 
+# Name is a character variable. Name of the listing. 
+
 ## Neighbourhood
+# Neighbourhood is a factor variable. The neighbourhood in which the listing is located. There are 22 classified neighbourhoods. 
+
 ## Room Type
+# Room type is a factor variable. There are 4 possible room types.
+
 ## Accommodates
+# Accomodates is a numeric variable. Accommodates is the number of guests that can stay in the listing.
+
 ## Comments
+# Comments is a character variable. Comments are the reviews about the listing. 
+
 ## Year
+# Year is a numeric variable. Year is the year the review is written.
+
 ## Price
+# Price is a numeric variable. Price is the price in dollars per night. 
