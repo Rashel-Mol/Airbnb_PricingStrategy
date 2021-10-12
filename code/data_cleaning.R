@@ -106,19 +106,13 @@ write.csv(airbnb, "data/airbnb.csv", row.names = FALSE)
 
 # --- Descriptive Summary Statistics --- #
 
-summary(airbnb$name)
-summary(airbnb$neighbourhood)
-summary(airbnb$room_type)
-summary(airbnb$accommodates)
-summary(airbnb$comments)
-summary(airbnb$year)
-summary(airbnb$price)
-
-# --- Summary Statistics --- #
-
 summary(airbnb)
 
-# --- Table of summary statistics --- #
-
-table_summary_statistics <- tbl_summary(airbnb)
-table_summary_statistics
+## ID 
+## Name 
+## Neighbourhood
+## Room Type
+## Accommodates
+## Comments
+## Year
+## Price

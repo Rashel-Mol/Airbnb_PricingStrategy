@@ -50,11 +50,19 @@ vader_sent2 <-
         TRUE ~ "neutral")) %>%
     select(vader_class, text)
 
-# Merge the sentiment classification back into the airbnb_sentiment data
+# Merge the sentiment classification back into the sample_airbnb data
 sample_airbnb <-
     sample_airbnb %>%
-    #mutate(unique_id = as.integer(unique_id)) %>%
     inner_join(vader_sent2, by = c("comments" = "text"))
+
+vader_sent3 <- 
+    vader_sent %>%
+    select(compound, text)
+
+# Merge the compound back into the sample_airbnb data
+sample_airbnb <-
+    sample_airbnb %>%
+    inner_join(vader_sent3, by = c("comments" = "text"))
 
 # Remove duplicates
 # There are two similar comments for two different id's, namely: Perfect. 
