@@ -26,6 +26,6 @@ msummary(regr)
 
 # --- Collinearity --- # 
 
-airbnb_cor <- rcorr(as.matrix(sample_airbnb[,8])) #8 is price, compound?
+airbnb_cor <- rcorr(as.matrix(sample_airbnb[,8, 10])) #8 is price, compound?
 round(airbnb_cor$P, 3) #to see whether correlations are significant
-corrplot(cor(sample_airbnb[,8]), method="number") #8 is price, compound?
+corrplot(cor(sample_airbnb[,8, 10]), method="number") #8 is price, compound?

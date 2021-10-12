@@ -14,6 +14,7 @@ library(ggplot2)
 library(ggraph)
 library(tidytext)
 library(stringr)
+library(dplyr)
 
 # --- Sampling --- #
 
