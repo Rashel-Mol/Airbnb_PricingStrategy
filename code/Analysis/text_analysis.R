@@ -81,7 +81,7 @@ sample_airbnb %>%
     ggplot(aes(x = vader_class)) +
     geom_bar()
 
-ggsave("gen/output/plot_vader_sent.pdf")
+ggsave("gen/temp/plot_vader_sent.pdf")
 
 # --- Prepare Data for Topic Models --- # 
 
@@ -194,4 +194,4 @@ airbnb_sentiment %>%
     geom_bar()
 
 #Save the plot. 
-ggsave("gen/output/sentiment_topics.pdf")
+ggsave("gen/temp/sentiment_topics.pdf")

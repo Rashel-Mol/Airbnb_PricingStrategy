@@ -103,7 +103,7 @@ airbnb <-
   # In this step we remove those jointly
 
 # Save airbnb as .csv
-write.csv(airbnb, "data/airbnb.csv", row.names = FALSE)
+write.csv(airbnb, "gen/temp/airbnb.csv", row.names = FALSE)
 
 # --- Descriptive Summary Statistics --- #
 
