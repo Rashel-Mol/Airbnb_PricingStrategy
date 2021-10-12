@@ -16,6 +16,13 @@ library(tidytext)
 library(stringr)
 library(dplyr)
 
+# --- Prototype --- #
+prototype = FALSE
+if (file.exists('prototype')) prototype = TRUE
+
+# Take sample if prototype = True
+# Take whole dataset if protoype = False 
+
 # --- Sampling --- #
 
 # Because of the big dataset, we make use of a prototype which exist of a sample of 500 observations
