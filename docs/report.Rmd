@@ -1,28 +1,83 @@
 ---
-title: "report"
-output: html_document
+title: "Pricing Strategy Airbnb based on Negative Reviews"
+author: "Rashel Mol, Noa Beekmans, Astrid Raaijmakers, Pien Korteweg, Amber Vermeer"
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
+```{r, echo = FALSE}
+library(readr)
+library(kableExtra)
+library(modelsummary)
 ```
 
-## Including Plots
+# Introduction 
+Firsly, we cleaned the raw dataset. The descriptions of the variables are mentioned below. Based on this cleaned dataset, we executed a text analysis. The results of this analysis are shown in a sentiment plot. Furthermore, we did a topic analysis to check what topics are spoken of the most. These results are shown in the sentiment topic plot below. To conclude, we performed a regression analysis. The results are shown in model summary. Also, we briefly describe the results in the section below. To conclude, we visually checked the correlation between price and sentiment (compound).
 
-You can also embed plots, for example:
+Note: our results are based on a prototype sample. The results can differ when conducting it on the whole dataset. 
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Variable Descriptions 
+The cleaned dataset "gen/temp/airbnb.csv", consists of the following variables. 
+
+#### ID 
+ID is a numeric variable. Every listing has an unique ID. 
+
+#### Name 
+Name is a character variable. Name of the listing. 
+
+#### Neighbourhood
+Neighbourhood is a factor variable. The neighbourhood in which the listing is located. There are 22 classified neighbourhoods. 
+
+#### Room Type
+Room type is a factor variable. There are 4 possible room types.
+
+#### Accommodates
+Accomodates is a numeric variable. Accommodates is the number of guests that can stay in the listing.
+
+#### Comments
+Comments is a character variable. Comments are the reviews about the listing. 
+
+#### Year
+Year is a numeric variable. Year is the year the review is written.
+
+#### Price
+Price is a numeric variable. Price is the price in dollars per night. 
+
+```{r, echo = FALSE}
+airbnb <- read_csv("../gen/temp/airbnb.csv")
+summary(airbnb)
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+## Sentiment Analysis
+
+```{r, echo = FALSE, fig.align='center', out.height='40%'}
+knitr::include_graphics('../gen/output/plot_sentiment.pdf')
+```
+What most standout is that most airbnb reviews are positive. A considerably small number of ratings is labeled as negative or neutral. 
+
+## Topic Analysis
+
+```{r, echo = FALSE, fig.align='center', out.height='40%'}
+knitr::include_graphics('../gen/output/sentiment_topics.pdf')
+```
+Noticeable is that most reviews are about Location and Amenity. A relatively small number is about Activity and Host. 
+
+## Model Summary 
+
+```{r, echo = FALSE}
+sample_airbnb <- read_csv("../gen/temp/sample_airbnb.csv")
+regr <- lm(compound ~ price, data = sample_airbnb)
+msummary(regr)
+```
+The effect of price on compound (sentiment) is non significant, with a p-value of .372. There is very little variation explained by the model, resulting in a R square of .002. 
+
+## Plot Price and Compound 
+
+```{r, echo = FALSE, fig.align='center', out.height='40%'}
+knitr::include_graphics('../gen/output/plot_regression.pdf')
+```
+As we expected based on the regression results, there is visually no correlation to be seen between price and compound (sentiment). Also, as earlier mentioned in one of the intermediate plots, most reviews are labeled as positive. 
