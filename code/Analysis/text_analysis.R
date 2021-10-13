@@ -95,6 +95,9 @@ plot + labs(y = "number of airbnb's",
 # save the output
 ggsave("gen/output/plot_sentiment.pdf")
 
+# save the csv
+write_csv(sample_airbnb, "gen/temp/sample_airbnb.csv")
+
 # --- Prepare Data for Topic Models --- # 
 
 # We pick a sample of the dataset to increase efficiency. 
@@ -212,3 +215,4 @@ plot_topic + labs(y = "number of airbnb's",
 
 #Save the plot. 
 ggsave("gen/output/sentiment_topics.pdf")
+

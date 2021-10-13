@@ -19,11 +19,10 @@ library(corrplot)
 # Run the regression 
 regr <- lm(compound ~ price, data = sample_airbnb)
 
-
 # Make a summary of the results, includes p-value
 sum <- glance(regr)
-# Save it to outputs
-write_csv(sum, 'gen/output/modelsummary.csv')
+# Save it to temp files
+write_csv(sum, 'gen/temp/modelsummary.csv')
 
 # Summary in table 
 msummary(regr)
@@ -38,8 +37,6 @@ plot_regr + labs(title = "Effect of price on sentiment (compound)")
 
 # Save it to output
 ggsave("gen/output/plot_regression.pdf")
-
-
 
 # --- Collinearity --- # 
 
