@@ -6,10 +6,15 @@
 
 # --- Libraries --- #
 
+library(readr)
 library(broom)
 library(modelsummary)
 library(Hmisc)
 library(corrplot)
+
+# --- Read in data --- #
+
+sample_airbnb <- read_csv("../../gen/temp/sample_airbnb.csv")
 
 # --- Linear Regression --- # 
 
@@ -20,7 +25,8 @@ library(corrplot)
 regr <- lm(compound ~ price, data = sample_airbnb)
 
 sum <- glance(regr)
-write_csv(sum, 'gen/output/modelsummary.csv')
+
+write_csv(sum, '../../gen/output/modelsummary.csv')
 
 msummary(regr)
 

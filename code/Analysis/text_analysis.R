@@ -16,12 +16,15 @@ library(tidytext)
 library(stringr)
 library(dplyr)
 
+# --- Read in data --- # 
+
+airbnb <- read_csv("../../gen/temp/airbnb.csv")
+
 # --- Sampling --- #
 
 # Because of the big dataset, we make use of a prototype which exist of a sample of 500 observations
 # Set seed so that everyone gets the same sample after running.
 set.seed(1234567890)
-
 
 # We did make a sample of 500 observations. 
 sample_airbnb <- airbnb[sample.int(nrow(airbnb),500),]
@@ -81,7 +84,11 @@ sample_airbnb %>%
     ggplot(aes(x = vader_class)) +
     geom_bar()
 
-ggsave("gen/temp/plot_vader_sent.pdf")
+ggsave("../../gen/output/plot_vader_sent.pdf")
+
+# --- Save sample_airbnb --- #
+
+write.csv(sample_airbnb, "../../gen/temp/sample_airbnb.csv", row.names = FALSE)
 
 # --- Prepare Data for Topic Models --- # 
 
@@ -135,7 +142,7 @@ tidy_reviews <-
     filter(word %in% word_counts$word)
 
 # Create new csv. 
-write_csv(tidy_reviews, 'gen/temp/tidy_reviews.csv')
+write_csv(tidy_reviews, '../../gen/temp/tidy_reviews.csv')
 
 # For each review count the number of times a word occurs in it.
 doc_word_counts <-
@@ -194,4 +201,4 @@ airbnb_sentiment %>%
     geom_bar()
 
 #Save the plot. 
-ggsave("gen/temp/sentiment_topics.pdf")
+ggsave("../../gen/output/sentiment_topics.pdf")
