@@ -31,9 +31,27 @@ The method used to indicate the amount of negative reviews per accommodation is 
 
 To expand the sentiment analysis, we will also make use of a text analysis. By using a text analysis we will identify 10 topics amongst all reviews generated. With this we can see what topic is defined in the review and then see whether there are positive, negative or neutral reviews associated with this topic.
 
-(First, introduce and motivate your chosen method, and explain how it contributes to solving the research question/business problem.
+### Results
+*Please know, that for the analysis we used a sample of the original Airbnb dataset, due to technical limitations. Should one prefer having all observations, one can follow the same code but exclude the prototype file in the directory one is working in.*
 
-Second, summarize your results concisely. Make use of subheaders where appropriate.)
+#### Sentiment Analysis
+![Sentiment Analysis](/gen/output/plot_sentiment.pdf){width=65%}
+
+Based on the plot above, which is generated in the text_analysis.R script, we can see the following:
+- The vast majority of reviews in the Airbnb dataset, is defined positive.
+- Only a very small part of the reviews in this same datset, is considered negative.
+
+Therefore, we can conclude that the majority of reviews created by Airbnb guests has a positive nature.
+
+#### Sentiment Topics
+![Sentiment Topics](/gen/output/sentiment_topics.pdf){width=65%}
+
+The next plot shows the topics most often mentioned in the reviews written by Airbnb guests. From this we see that the topic that has been mentioned most often is *Location*. Followed by *Activity*, *Amenity*, and *Host*. 
+
+#### Regression Analysis
+![Regression Analysis](/gen/output/sentiment_topics.pdf){width=65%}
+
+The final plot shows that, based on the generated sample, 
 
 ## Repository overview
 
