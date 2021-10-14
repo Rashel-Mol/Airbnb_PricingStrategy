@@ -13,11 +13,15 @@ library(lubridate)
 library(gtsummary)
 library(readr)
 library(ggplot2)
-library(summarytools)
 
 # Read in the files 
+<<<<<<< HEAD
 listings <- read_csv("../../data/listings.csv")
 reviews <- read_csv("../../data/reviews.csv")
+=======
+listings <- read_csv("data/listings.csv")
+reviews <- read_csv("data/reviews.csv")
+>>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
@@ -81,7 +85,7 @@ airbnb <- rename(airbnb, neighbourhood = neighbourhood_cleansed)
 
 # --- Check for outliers --- #
 ggplot(airbnb) +
-  aes(x = "", y = price) +
+  aes(x = "listings", y = price) +
   geom_boxplot(fill = "#0c4c8a") +
   theme_minimal()
 # the boxplot shows 1 extreme value of approximately 8000
@@ -108,27 +112,3 @@ write.csv(airbnb, "../../gen/temp/airbnb.csv", row.names = FALSE)
 # --- Descriptive Summary Statistics --- #
 
 summary(airbnb)
-
-## ID 
-#ID is a numeric variable. Every listing has an unique ID. 
-
-## Name 
-# Name is a character variable. Name of the listing. 
-
-## Neighbourhood
-# Neighbourhood is a factor variable. The neighbourhood in which the listing is located. There are 22 classified neighbourhoods. 
-
-## Room Type
-# Room type is a factor variable. There are 4 possible room types.
-
-## Accommodates
-# Accomodates is a numeric variable. Accommodates is the number of guests that can stay in the listing.
-
-## Comments
-# Comments is a character variable. Comments are the reviews about the listing. 
-
-## Year
-# Year is a numeric variable. Year is the year the review is written.
-
-## Price
-# Price is a numeric variable. Price is the price in dollars per night. 
