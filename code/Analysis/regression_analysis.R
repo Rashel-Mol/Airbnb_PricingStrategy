@@ -6,8 +6,13 @@
 
 # --- Libraries --- #
 
+library(readr)
 library(broom)
 library(modelsummary)
+
+# --- Read in data --- #
+
+sample_airbnb <- read_csv("../../gen/temp/sample_airbnb.csv")
 
 # --- Linear Regression --- # 
 
@@ -19,8 +24,12 @@ regr <- lm(compound ~ price, data = sample_airbnb)
 
 # Make a summary of the results, includes p-value
 sum <- glance(regr)
+
+write_csv(sum, '../../gen/output/modelsummary.csv')
+
 # Save it to temp files
 write_csv(sum, 'gen/temp/modelsummary.csv')
+
 
 # Summary in table 
 msummary(regr)
@@ -35,4 +44,7 @@ plot_regr <-
 plot_regr + labs(title = "Effect of price on sentiment (compound)")
 
 # Save it to output
+
 ggsave("gen/output/plot_regression.pdf")
+ggsave("gen/output/plot_regression.pdf")
+
