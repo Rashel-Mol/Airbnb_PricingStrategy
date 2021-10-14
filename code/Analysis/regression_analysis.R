@@ -17,6 +17,9 @@ library(modelsummary)
 # Run the regression 
 regr <- lm(compound ~ price, data = sample_airbnb)
 
+# To check the significance:
+summary(regr)
+
 # Make a summary of the results, includes p-value
 sum <- glance(regr)
 # Save it to temp files
