@@ -15,8 +15,13 @@ library(readr)
 library(ggplot2)
 
 # Read in the files 
+<<<<<<< HEAD
+listings <- read_csv("../../data/listings.csv")
+reviews <- read_csv("../../data/reviews.csv")
+=======
 listings <- read_csv("data/listings.csv")
 reviews <- read_csv("data/reviews.csv")
+>>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
@@ -86,7 +91,7 @@ ggplot(airbnb) +
 # the boxplot shows 1 extreme value of approximately 8000
 # this value has been manually verified on the Airbnb website
 
-ggsave("gen/output/boxplot_outliers.pdf")
+ggsave("../../gen/output/boxplot_outliers.pdf")
 
 # --- Check for duplicates and NA's --- # 
 
@@ -102,7 +107,7 @@ airbnb <-
   # In this step we remove those jointly
 
 # Save airbnb as .csv
-write.csv(airbnb, "gen/temp/airbnb.csv", row.names = FALSE)
+write.csv(airbnb, "../../gen/temp/airbnb.csv", row.names = FALSE)
 
 # --- Descriptive Summary Statistics --- #
 

@@ -6,10 +6,15 @@
 
 # --- Libraries --- #
 
+library(readr)
 library(broom)
 library(modelsummary)
 library(Hmisc)
 library(corrplot)
+
+# --- Read in data --- #
+
+sample_airbnb <- read_csv("../../gen/temp/sample_airbnb.csv")
 
 # --- Linear Regression --- # 
 
@@ -21,8 +26,13 @@ regr <- lm(compound ~ price, data = sample_airbnb)
 
 # Make a summary of the results, includes p-value
 sum <- glance(regr)
+<<<<<<< HEAD
+
+write_csv(sum, '../../gen/output/modelsummary.csv')
+=======
 # Save it to temp files
 write_csv(sum, 'gen/temp/modelsummary.csv')
+>>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # Summary in table 
 msummary(regr)
