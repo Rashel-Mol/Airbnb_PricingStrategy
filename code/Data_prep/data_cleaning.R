@@ -18,8 +18,6 @@ library(ggplot2)
 
 listings <- read_csv("../../data/listings.csv")
 reviews <- read_csv("../../data/reviews.csv")
-listings <- read_csv("data/listings.csv")
-reviews <- read_csv("data/reviews.csv")
 
 # Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))

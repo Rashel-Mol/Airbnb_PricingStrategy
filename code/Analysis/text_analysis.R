@@ -19,10 +19,6 @@ library(dplyr)
 # --- Read in data --- # 
 
 airbnb <- read_csv("../../gen/temp/airbnb.csv")
-# --- Prototype --- #
-
-prototype = FALSE
-if (file.exists('prototype')) prototype = TRUE
 
 # --- Sampling --- #
 
@@ -31,9 +27,7 @@ if (file.exists('prototype')) prototype = TRUE
 set.seed(1234567890)
 
 # We did make a sample of 500 observations. 
-samplesize_text = nrow(airbnb)
-if (prototype) samplesize_text = 500
-sample_airbnb <- airbnb[sample.int(nrow(airbnb),samplesize_text),]
+sample_airbnb <- airbnb[sample.int(nrow(airbnb),500),]
 
 # --- VADER Sentiment lexicon --- # 
 
@@ -54,12 +48,12 @@ vader_sent2 <-
     # remove any errors
     filter(word_scores != 'ERROR') %>%
     # classify as positive or negative
-    mutate(sentiment = case_when(
+    mutate(vader_class = case_when(
         compound < -0.05 ~ "negative",
         compound > 0.05 ~ "positive",
         # the final case must always be written as TRUE - something
         TRUE ~ "neutral")) %>%
-    select(sentiment, text)
+    select(vader_class, text)
 
 # Merge the sentiment classification back into the sample_airbnb data.
 sample_airbnb <-
@@ -86,32 +80,21 @@ sample_airbnb <-
     filter(!duplicated(sample_airbnb))
 
 # Plot the results.
-plot <-
-    sample_airbnb %>%
-    ggplot(aes(x = sentiment)) +
+sample_airbnb %>%
+    ggplot(aes(x = vader_class)) +
     geom_bar()
 
 ggsave("../../gen/output/plot_vader_sent.pdf")
 
 # --- Save sample_airbnb --- #
+
 write.csv(sample_airbnb, "../../gen/temp/sample_airbnb.csv", row.names = FALSE)
-
-# Add title 
-plot + labs(y = "number of airbnb's", 
-            title = "Sentiment Analysis")
-
-# save the output
-ggsave("gen/output/plot_sentiment.pdf")
-
-# save the csv
-write_csv(sample_airbnb, "gen/temp/sample_airbnb.csv")
 
 # --- Prepare Data for Topic Models --- # 
 
 # We pick a sample of the dataset to increase efficiency. 
-samplesize_topic = nrow(airbnb)
-if (prototype) samplesize_topic = 250
-airbnb_sentiment <- airbnb[sample.int(nrow(airbnb_sentiment),samplesize_topic),]
+set.seed(1234567890)
+airbnb_sentiment <- airbnb[sample.int(nrow(airbnb_sentiment),250),]
 
 # Clean the data.
 tidy_reviews <-
@@ -127,7 +110,7 @@ nums <- tidy_reviews %>%
     select(word) %>%
     # only keep the column with unnested words
     unique()
-    # only keep unique words for every unique id 
+# only keep unique words for every unique id 
 
 # Search for most frequently used words. 
 freq_words <- 
@@ -176,7 +159,7 @@ reviews_dtm <-
 
 reviews_lda <-
     stm(reviews_dtm,
-        K = 4,
+        K = 5,
         seed = 123456789)
 
 # Print out the top words associated with each topic. 
@@ -201,26 +184,21 @@ airbnb_sentiment <-
     airbnb_sentiment %>%
     inner_join(reviews_gamma, by = "id")
 
-# We identified 5 themes in the topics. These themes are used as topic labels.
-# The themes are created based on a sample of 250, so they might be different when running it on the whole dataset
+# We identified 5 themes in the topics. These themes are used as topic labels. 
 airbnb_sentiment <-
     airbnb_sentiment %>%
     mutate(topic = case_when(
         topic == 1 ~ "Amenity",
         topic == 2 ~ "Host",
         topic == 3 ~ "Activity",
-        TRUE ~ "Location"
+        topic == 4 ~ "Location",
+        TRUE ~ "Distance"
     ))
 
 # Create a plot that visualizes how each topic varies with the overall sentiment of the text. 
-plot_topic <-
-    airbnb_sentiment %>%
+airbnb_sentiment %>%
     ggplot(aes(x = topic)) +
     geom_bar()
 
-plot_topic + labs(y = "number of airbnb's", 
-                  title = "Topic Analysis")
-
 #Save the plot. 
 ggsave("../../gen/output/sentiment_topics.pdf")
-ggsave("gen/output/sentiment_topics.pdf")
