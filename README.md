@@ -51,7 +51,11 @@ The next plot shows the topics most often mentioned in the reviews written by Ai
 #### Regression Analysis
 ![Regression Analysis](/gen/output/sentiment_topics.pdf){width=65%}
 
-The final plot shows that, based on the generated sample, 
+The final plot shows that, based on the generated sample, there is a negative relationship between compound and price. However, keep in mind that:
+- This relationship has a small slope, indicating that the relationship is only slightly negative (-0.0002).
+- Our sample generated results that were considerably insignificant (significance level 0.372).
+
+Based on these two limitations, one should be careful drawing conclusions. Based on the sample used in this research, there is not enough evidence for the research question that a higher price leads to a higher relative amount of negative reviews.
 
 ## Repository overview
 
