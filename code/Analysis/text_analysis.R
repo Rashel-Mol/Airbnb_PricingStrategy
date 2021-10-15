@@ -16,16 +16,13 @@ library(tidytext)
 library(stringr)
 library(dplyr)
 
-<<<<<<< HEAD
 # --- Read in data --- # 
 
 airbnb <- read_csv("../../gen/temp/airbnb.csv")
-=======
 # --- Prototype --- #
 
 prototype = FALSE
 if (file.exists('prototype')) prototype = TRUE
->>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # --- Sampling --- #
 
@@ -94,13 +91,11 @@ plot <-
     ggplot(aes(x = sentiment)) +
     geom_bar()
 
-<<<<<<< HEAD
 ggsave("../../gen/output/plot_vader_sent.pdf")
 
 # --- Save sample_airbnb --- #
-
 write.csv(sample_airbnb, "../../gen/temp/sample_airbnb.csv", row.names = FALSE)
-=======
+
 # Add title 
 plot + labs(y = "number of airbnb's", 
             title = "Sentiment Analysis")
@@ -110,7 +105,6 @@ ggsave("gen/output/plot_sentiment.pdf")
 
 # save the csv
 write_csv(sample_airbnb, "gen/temp/sample_airbnb.csv")
->>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # --- Prepare Data for Topic Models --- # 
 
@@ -228,9 +222,5 @@ plot_topic + labs(y = "number of airbnb's",
                   title = "Topic Analysis")
 
 #Save the plot. 
-<<<<<<< HEAD
 ggsave("../../gen/output/sentiment_topics.pdf")
-=======
 ggsave("gen/output/sentiment_topics.pdf")
-
->>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8

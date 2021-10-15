@@ -15,13 +15,11 @@ library(readr)
 library(ggplot2)
 
 # Read in the files 
-<<<<<<< HEAD
+
 listings <- read_csv("../../data/listings.csv")
 reviews <- read_csv("../../data/reviews.csv")
-=======
 listings <- read_csv("data/listings.csv")
 reviews <- read_csv("data/reviews.csv")
->>>>>>> c3de83d662d52d1951308cf27ceb4e7d6bc034c8
 
 # Only keep necessary columns from listings 
 listings_clean <- select(listings, c(id, name, neighbourhood_cleansed, price, room_type, accommodates))
