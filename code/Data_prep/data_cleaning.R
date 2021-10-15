@@ -83,7 +83,8 @@ airbnb <- rename(airbnb, neighbourhood = neighbourhood_cleansed)
 ggplot(airbnb) +
   aes(x = "listings", y = price) +
   geom_boxplot(fill = "#0c4c8a") +
-  theme_minimal()
+  theme_minimal() +
+  pdf(NULL)
 # the boxplot shows 1 extreme value of approximately 8000
 # this value has been manually verified on the Airbnb website
 

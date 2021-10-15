@@ -20,6 +20,11 @@ library(dplyr)
 
 airbnb <- read_csv("../../gen/temp/airbnb.csv")
 
+# --- Prototype --- #
+
+prototype = FALSE
+if (file.exists('prototype')) prototype = TRUE
+
 # --- Sampling --- #
 
 # Because of the big dataset, we make use of a prototype which exist of a sample of 500 observations
@@ -27,7 +32,9 @@ airbnb <- read_csv("../../gen/temp/airbnb.csv")
 set.seed(1234567890)
 
 # We did make a sample of 500 observations. 
-sample_airbnb <- airbnb[sample.int(nrow(airbnb),500),]
+samplesize_text = nrow(airbnb)
+if (prototype) samplesize_text = 500
+sample_airbnb <- airbnb[sample.int(nrow(airbnb),samplesize_text),]
 
 # --- VADER Sentiment lexicon --- # 
 
@@ -82,7 +89,7 @@ sample_airbnb <-
 # Plot the results.
 sample_airbnb %>%
     ggplot(aes(x = vader_class)) +
-    geom_bar()
+    geom_bar() + pdf(NULL)
 
 ggsave("../../gen/output/plot_vader_sent.pdf")
 
@@ -198,7 +205,7 @@ airbnb_sentiment <-
 # Create a plot that visualizes how each topic varies with the overall sentiment of the text. 
 airbnb_sentiment %>%
     ggplot(aes(x = topic)) +
-    geom_bar()
+    geom_bar() + pdf(NULL)
 
 #Save the plot. 
 ggsave("../../gen/output/sentiment_topics.pdf")
