@@ -89,10 +89,10 @@ The data required for this project is available on [Inside Airbnb](http://inside
 ### Running the workflow
 
 The scripts should be executed in the following order, please note that Make runs the scripts in this order automatically:
-- download_data.R
-- data_cleaning.R
-- analysis.R
-- (...)
+1. download_data.R
+2. data_cleaning.R
+3. text_analysis.R
+4. regression_analysis.R
 
 ## More resources
 
