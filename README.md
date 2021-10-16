@@ -44,8 +44,7 @@ Based on the plot above, which is generated in the text_analysis.R script, we ca
 Therefore, we can conclude that the majority of reviews created by Airbnb guests has a positive nature.
 
 #### Sentiment Topics
-<img src="https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/sentiment_topics.pdf" width="450">
-![Sentiment Topics](gen/output/sentiment_topics.pdf)
+<img src="https://github.com/AstridR97/Airbnb_PricingStrategy/blob/a51b8e5dd2af6bdb2c334696c65cf4d742e62bf2/gen/output/sentiment_topics.pdf" width="450">
 
 The next plot shows the topics most often mentioned in the reviews written by Airbnb guests. From this we see that the topic that has been mentioned most often is *Location*. Followed by *Activity*, *Amenity*, and *Host*. 
 
