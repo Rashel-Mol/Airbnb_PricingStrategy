@@ -36,7 +36,7 @@ To expand the sentiment analysis, we will also make use of a text analysis. By u
 
 #### Sentiment Analysis
 
-Based on the ([sentiment analysis plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_vader_sent.pdf)), which is generated in the text_analysis.R script, we can see the following:
+Based on the [sentiment analysis plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_vader_sent.pdf), which is generated in the text_analysis.R script, we can see the following:
 - The vast majority of reviews in the Airbnb dataset, is defined positive.
 - Only a very small part of the reviews in this same datset, is considered negative.
 
@@ -44,11 +44,11 @@ Therefore, we can conclude that the majority of reviews created by Airbnb guests
 
 #### Sentiment Topics
 
-The ([sentiment Topics plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/sentiment_topics.pdf)) shows the topics most often mentioned in the reviews written by Airbnb guests. From this we see that the topic that has been mentioned most often is *Location*. Followed by *Activity*, *Amenity*, and *Host*. 
+The [sentiment Topics plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/sentiment_topics.pdf) shows the topics most often mentioned in the reviews written by Airbnb guests. From this we see that the topic that has been mentioned most often is *Location*. Followed by *Activity*, *Amenity*, and *Host*. 
 
 #### Regression Analysis
 
-The ([final plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_regression.pdf)) shows that, based on the generated sample, there is a negative relationship between compound and price. However, keep in mind that:
+The [final plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_regression.pdf) shows that, based on the generated sample, there is a negative relationship between compound and price. However, keep in mind that:
 - This relationship has a small slope, indicating that the relationship is only slightly negative (-0.0002).
 - Our sample generated results that were considerably insignificant (significance level 0.372).
 
