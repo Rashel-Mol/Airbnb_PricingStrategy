@@ -96,7 +96,7 @@ plot <-
 plot + labs(y = "number of airbnb's", 
             title = "Sentiment Analysis")
 
-# save the output
+# Save the output
 ggsave("../../gen/output/plot_sentiment.pdf")
 
 # save the csv
@@ -113,17 +113,17 @@ airbnb_sentiment <- airbnb[sample.int(nrow(airbnb_sentiment),samplesize_topic),]
 tidy_reviews <-
     airbnb_sentiment %>%
     unnest_tokens(word, comments) %>%
-    # every word on one row
+    # Every word on one row
     mutate(word = lemmatize_words(word))
 
 #Select words that include numeric values. 
 nums <- tidy_reviews %>% 
     filter(str_detect(word, "^[0-9]")) %>%
-    # filter out numerics 
+    # Filter out numerics 
     select(word) %>%
-    # only keep the column with unnested words
+    # Only keep the column with unnested words
     unique()
-# only keep unique words for every unique id 
+# Only keep unique words for every unique id 
 
 # Search for most frequently used words. 
 freq_words <- 
@@ -170,6 +170,7 @@ reviews_dtm <-
 
 # --- Estimate Topic Model --- #
 
+# We want our model to identify 4 themes, therefore K = 4.
 reviews_lda <-
     stm(reviews_dtm,
         K = 4,

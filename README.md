@@ -79,6 +79,7 @@ install.packages("yardstick")
 install.packages("stm")
 install.packages("ggplot2")
 install.packages("ggraph")
+install.packages("igraph", type = "binary")
 ```
 
 ### Collecting the data
