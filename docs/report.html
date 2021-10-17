@@ -172,14 +172,6 @@ pre code {
 </div>
 
 
-<pre><code>## Rows: 226895 Columns: 8</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr (4): name, neighbourhood, room_type, comments
-## dbl (4): id, accommodates, year, price</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div id="introduction" class="section level1">
 <h1>Introduction</h1>
 <p>Firsly, we cleaned the raw dataset. The descriptions of the variables are mentioned below. Based on this cleaned dataset, we executed a text analysis. The results of this analysis are shown in a sentiment plot. Furthermore, we did a topic analysis to check what topics are spoken of the most. These results are shown in the sentiment topic plot below. To conclude, we performed a regression analysis. The results are shown in model summary. Also, we briefly describe the results in the section below. To conclude, we visually checked the correlation between price and sentiment (compound).</p>
@@ -187,21 +179,21 @@ pre code {
 <div id="variable-descriptions" class="section level2">
 <h2>Variable Descriptions</h2>
 <p>The cleaned dataset “gen/temp/airbnb.csv”, consists of the following variables.</p>
-<div id="id" class="section level4">
-<h4>ID</h4>
+<div id="id" class="section level3">
+<h3>ID</h3>
 <p>ID is a numeric variable. Every listing has an unique ID.</p>
 <pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
 ##     2818  7276869 17519833 17400701 24732648 51316529</code></pre>
 </div>
-<div id="name" class="section level4">
-<h4>Name</h4>
+<div id="name" class="section level3">
+<h3>Name</h3>
 <p>Name is a character variable. It is the name of the listing. Below is the summary and an example of a name:</p>
 <pre><code>##    Length     Class      Mode 
 ##    226895 character character</code></pre>
 <pre><code>## [1] &quot;Quiet Garden View Room &amp; Super Fast WiFi&quot;</code></pre>
 </div>
-<div id="neighbourhood" class="section level4">
-<h4>Neighbourhood</h4>
+<div id="neighbourhood" class="section level3">
+<h3>Neighbourhood</h3>
 <p>Neighbourhood is a factor variable. The neighbourhood in which the listing is located. There are 22 classified neighbourhoods.</p>
 <pre><code>## 
 ##                        Bijlmer-Centrum                           Bijlmer-Oost 
@@ -227,21 +219,21 @@ pre code {
 ##                             Westerpark                                   Zuid 
 ##                                  13033                                  12799</code></pre>
 </div>
-<div id="room-type" class="section level4">
-<h4>Room Type</h4>
+<div id="room-type" class="section level3">
+<h3>Room Type</h3>
 <p>Room type is a factor variable. There are 4 possible room types.</p>
 <pre><code>## 
 ## Entire home/apt      Hotel room    Private room     Shared room 
 ##          100546            4025          120366            1958</code></pre>
 </div>
-<div id="accommodates" class="section level4">
-<h4>Accommodates</h4>
+<div id="accommodates" class="section level3">
+<h3>Accommodates</h3>
 <p>Accomodates is a numeric variable. Accommodates is the number of guests that can stay in the listing.</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##   1.000   2.000   2.000   2.692   4.000  16.000</code></pre>
 </div>
-<div id="comments" class="section level4">
-<h4>Comments</h4>
+<div id="comments" class="section level3">
+<h3>Comments</h3>
 <p>Comments is a character variable. Comments are the reviews about the listing. Below are some examples of comments.</p>
 <pre><code>## [1] &quot;A model host. A model apartment. Airbnb private rooms just don&#39;t get any better than this!&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
 ## [2] &quot;Come and enjoy&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
@@ -250,20 +242,20 @@ pre code {
 ## [5] &quot;Daniel was a great host! He gave us great tips for transportation and local shops and restaurants, and his place was very clean.&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
 ## [6] &quot;I had to cancel my trip to Amsterdam so unfortunately, I didn&#39;t get to stay with Daniel. I got very sick the day before I was due to go and couldn&#39;t leave home. I still wanted to tell the world that Daniel has been so gracious and kind in negotiating refunds under these extenuating circumstances. Thank you so much! I hope to rebook and stay with him later this year!&quot;</code></pre>
 </div>
-<div id="year" class="section level4">
-<h4>Year</h4>
+<div id="year" class="section level3">
+<h3>Year</h3>
 <p>Year is a numeric variable. Year is the year the review is written.</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##    2018    2018    2019    2019    2019    2021</code></pre>
 </div>
-<div id="price" class="section level4">
-<h4>Price</h4>
+<div id="price" class="section level3">
+<h3>Price</h3>
 <p>Price is a numeric variable. Price is the price in dollars per night.</p>
 <pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
 ##     4.0    79.0   105.0   128.8   150.0  7999.0</code></pre>
 </div>
-<div id="total-overview-of-variables" class="section level4">
-<h4>Total overview of variables</h4>
+<div id="total-overview-of-variables" class="section level3">
+<h3>Total overview of variables</h3>
 <pre><code>##        id               name           neighbourhood       room_type        
 ##  Min.   :    2818   Length:226895      Length:226895      Length:226895     
 ##  1st Qu.: 7276869   Class :character   Class :character   Class :character  
@@ -296,14 +288,6 @@ pre code {
 <h2>Regression Analysis</h2>
 <div id="model-summary" class="section level3">
 <h3>Model Summary</h3>
-<pre><code>## Rows: 500 Columns: 10</code></pre>
-<pre><code>## -- Column specification --------------------------------------------------------
-## Delimiter: &quot;,&quot;
-## chr (5): name, neighbourhood, room_type, comments, sentiment
-## dbl (5): id, accommodates, year, price, compound</code></pre>
-<pre><code>## 
-## i Use `spec()` to retrieve the full column specification for this data.
-## i Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
 <tr>
