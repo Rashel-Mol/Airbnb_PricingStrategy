@@ -33,7 +33,7 @@ airbnb <- inner_join(listings_clean, reviews_clean, by = c("id" = "listing_id"))
 # --- Price --- #
 
 airbnb$price_numeric <- 
-  # Rreate a new column with price as numeric 
+  # Create a new column with price as numeric 
   airbnb$price %>%
   str_remove(fixed("$")) %>% 
   str_remove(",") %>%

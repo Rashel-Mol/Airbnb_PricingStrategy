@@ -57,7 +57,12 @@ summary(airbnb)
 ```{r, echo = FALSE, fig.align='center', out.height='40%'}
 knitr::include_graphics('../gen/output/plot_sentiment.pdf')
 ```
-What most standout is that most airbnb reviews are positive. A considerably small number of ratings is labeled as negative or neutral. 
+
+Based on the plot above, which is generated in the text_analysis.R script, we can see the following:
+- The vast majority of reviews in the Airbnb dataset is defined positive.
+- Only a very small part of the reviews in this same dataset is considered negative.
+
+Therefore, we can conclude that the majority of reviews created by Airbnb guests has a positive nature.
 
 ## Topic Analysis
 
@@ -66,7 +71,11 @@ knitr::include_graphics('../gen/output/sentiment_topics.pdf')
 ```
 Noticeable is that most reviews are about Location and Amenity. A relatively small number is about Activity and Host. 
 
-## Model Summary 
+The plot above shows the topics most often mentioned in the reviews written by Airbnb guests. Remarkable is that most reviews are about Location and Amenity. A relatively small number is about Activity and Host.
+
+## Regression Analysis
+
+### Model Summary 
 
 ```{r, echo = FALSE}
 sample_airbnb <- read_csv("../gen/temp/sample_airbnb.csv")
@@ -75,9 +84,11 @@ msummary(regr)
 ```
 The effect of price on compound (sentiment) is non significant, with a p-value of .372. There is very little variation explained by the model, resulting in a R square of .002. 
 
-## Plot Price and Compound 
+### Plot Price and Compound 
 
 ```{r, echo = FALSE, fig.align='center', out.height='40%'}
 knitr::include_graphics('../gen/output/plot_regression.pdf')
 ```
 As we expected based on the regression results, there is visually no correlation to be seen between price and compound (sentiment). Also, as earlier mentioned in one of the intermediate plots, most reviews are labeled as positive. 
+
+However, since only a limited sample size has been used in this analysis, one should be careful about rejecting this hypothesis. A significant relationship could still be identified when analyzing the full dataset.

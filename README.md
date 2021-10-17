@@ -32,27 +32,23 @@ The method used to indicate the amount of negative reviews per accommodation is 
 To expand the sentiment analysis, we will also make use of a text analysis. By using a text analysis we will identify 10 topics amongst all reviews generated. With this we can see what topic is defined in the review and then see whether there are positive, negative or neutral reviews associated with this topic. Complete results of this analysis can be found in the file report.pdf or report.html.
 
 ### Results
-*Please know, that for the analysis we used a sample of the original Airbnb dataset, due to technical limitations. Should one prefer having all observations, one can follow the same code but exclude the prototype file in the directory one is working in.*
+*Please know that for the analysis we used a sample of the original Airbnb dataset, due to technical limitations. Should one prefer having all observations, one can follow the same code but exclude the prototype file in the directory one is working in.*
 
 #### Sentiment Analysis
 
-Based on the [sentiment analysis plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_vader_sent.pdf), which is generated in the text_analysis.R script, we can see the following:
-- The vast majority of reviews in the Airbnb dataset, is defined positive.
-- Only a very small part of the reviews in this same datset, is considered negative.
-
-Therefore, we can conclude that the majority of reviews created by Airbnb guests has a positive nature.
+What most stands out is that most Airbnb reviews are positive. A considerably small number of ratings is labeled as negative or neutral. 
 
 #### Sentiment Topics
 
-The [sentiment Topics plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/sentiment_topics.pdf) shows the topics most often mentioned in the reviews written by Airbnb guests. From this we see that the topic that has been mentioned most often is *Location*. Followed by *Activity*, *Amenity*, and *Host*. 
+The plot generated from the sentiment analysis about the most frequent topics in the reviews shows that the topics that have been mentioned most often are *Location* and *Activity*, followed by  *Amenity* and *Host*.
 
 #### Regression Analysis
 
-The [final plot](https://github.com/AstridR97/Airbnb_PricingStrategy/blob/main/gen/output/plot_regression.pdf) shows that, based on the generated sample, there is a negative relationship between compound and price. However, keep in mind that:
-- This relationship has a small slope, indicating that the relationship is only slightly negative (-0.0002).
-- Our sample generated results that were considerably insignificant (significance level 0.372).
+The regression analysis shows that, based on the generated sample, there is a not a significant negative relationship between compound and price.
 
-Based on these two limitations, one should be careful drawing conclusions. Based on the sample used in this research, there is not enough evidence for the research question that a higher price leads to a higher relative amount of negative reviews.
+Based on the sample used in this research, there is not enough evidence for the research question that a higher price leads to a higher relative amount of negative reviews.
+
+However, since only a limited sample size has been used in this analysis, one should be careful about rejecting this hypothesis. A significant relationship could still be identified when analysing a larger sample.
 
 ## Repository overview
 
@@ -67,6 +63,7 @@ In the code folder a makefile is included which will enable the user to automati
 - Install [Make](https://tilburgsciencehub.com/building-blocks/configure-your-computer/automation-and-workflows/make/). Make is required in order to run the automated pipeline.   Using this 'build tool' enables easier reproduction of the workflow and allows for more transparancy in the project
 - Install [R and RStudio](https://tilburgsciencehub.com/building-blocks/configure-your-computer/statistics-and-computation/r/).
 - In R, the following packages should be installed by copy/pasting and running the following code snippet:
+
 ```
 install.packages("googledrive")
 install.packages("readr")

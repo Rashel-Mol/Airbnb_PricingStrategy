@@ -9,8 +9,7 @@
 library(readr)
 library(broom)
 library(modelsummary)
-library(Hmisc)
-library(corrplot)
+library(ggplot2)
 
 # --- Read in data --- #
 
@@ -22,9 +21,6 @@ sample_airbnb <- read_csv("../../gen/temp/sample_airbnb.csv")
 # E.g., does a higher price lead to more negative reviews? 
 
 regr <- lm(compound ~ price, data = sample_airbnb)
-
-# To check the significance:
-summary(regr)
 
 # Make a summary of the results, includes p-value
 sum <- glance(regr)
