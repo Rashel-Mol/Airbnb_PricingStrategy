@@ -4,10 +4,11 @@ OUTPUT = ../../gen/output
 
 ## Main build rule
 
-all: $(DATA)/reviews.csv $(DATA)/listings.csv $(OUTPUT)/boxplot_outliers.pdf $(TEMP)/airbnb.csv 
+all: $(DATA)/reviews.csv $(DATA)/listings.csv  $(TEMP)/airbnb.csv $(OUTPUT)/boxplot_outliers.pdf 
 
 ## Sub-builds
 $(DATA)/reviews.csv $(DATA)/listings.csv: download_data.R
+		mkdir -p ../../data
 		R --vanilla < download_data.R
 		
 $(TEMP)/airbnb.csv: data_cleaning.R $(DATA)/reviews.csv $(DATA)/listings.csv

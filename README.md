@@ -83,7 +83,7 @@ install.packages("ggraph")
 
 ### Collecting the data
 
-The data required for this project is available on [Inside Airbnb](http://insideairbnb.com/get-the-data.html), the datasets used in this project are [listings.csv](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/listings.csv) and [Inside Airbnb](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/reviews.csv). There is a script included which allows access to the Google Drive where the exact set used in this project is stored. Therefore, potential users should have a Google Drive account to access these data files.
+The data required for this project is available on [Inside Airbnb](http://insideairbnb.com/get-the-data.html), the datasets used in this project are [listings.csv](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/listings.csv) and [Inside Airbnb](http://data.insideairbnb.com/the-netherlands/north-holland/amsterdam/2021-09-07/visualisations/reviews.csv). There is a script included which allows access to the Google Drive where the exact set used in this project is stored. Therefore, potential users should have a Google Drive account and be signed in to access these data files.
 
 ### Running the workflow
 
