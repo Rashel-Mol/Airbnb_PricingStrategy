@@ -2,8 +2,8 @@
 title: "Pricing Strategy Airbnb based on Negative Reviews"
 author: "Rashel Mol, Noa Beekmans, Astrid Raaijmakers, Pien Korteweg, Amber Vermeer"
 output:
-  html_document: default
   pdf_document: default
+  html_document: default
 ---
 
 ```{r setup, include=FALSE}
@@ -13,6 +13,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(readr)
 library(kableExtra)
 library(modelsummary)
+
+airbnb <- read_csv("../gen/temp/airbnb.csv")
 ```
 
 # Introduction 
@@ -24,31 +26,58 @@ Note: our results are based on a prototype sample. The results can differ when c
 The cleaned dataset "gen/temp/airbnb.csv", consists of the following variables. 
 
 #### ID 
-ID is a numeric variable. Every listing has an unique ID. 
+ID is a numeric variable. Every listing has an unique ID.
+
+```{r, echo = FALSE}
+summary(airbnb$id)
+```
 
 #### Name 
-Name is a character variable. Name of the listing. 
+Name is a character variable. It is the name of the listing. Below is the summary and an example of a name: 
+```{r, echo = FALSE}
+summary(airbnb$name)
+head(airbnb$name, 1)
+```
 
 #### Neighbourhood
 Neighbourhood is a factor variable. The neighbourhood in which the listing is located. There are 22 classified neighbourhoods. 
 
+```{r, echo = FALSE}
+table(airbnb$neighbourhood)
+```
+
 #### Room Type
 Room type is a factor variable. There are 4 possible room types.
+```{r, echo = FALSE}
+table(airbnb$room_type)
+```
 
 #### Accommodates
 Accomodates is a numeric variable. Accommodates is the number of guests that can stay in the listing.
+```{r, echo = FALSE}
+summary(airbnb$accommodates)
+```
 
 #### Comments
-Comments is a character variable. Comments are the reviews about the listing. 
+Comments is a character variable. Comments are the reviews about the listing. Below are some examples of comments. 
+```{r, echo = FALSE}
+head(airbnb$comments)
+```
 
 #### Year
 Year is a numeric variable. Year is the year the review is written.
+```{r, echo = FALSE}
+summary(airbnb$year)
+```
 
 #### Price
 Price is a numeric variable. Price is the price in dollars per night. 
-
 ```{r, echo = FALSE}
-airbnb <- read_csv("../gen/temp/airbnb.csv")
+summary(airbnb$price)
+```
+
+#### Total overview of variables
+```{r, echo = FALSE}
 summary(airbnb)
 ```
 
