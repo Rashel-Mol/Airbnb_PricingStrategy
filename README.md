@@ -93,6 +93,8 @@ The scripts should be executed in the following order, please note that Make run
 3. text_analysis.R
 4. regression_analysis.R
 
+Note that the dataset used is very large, which might cause the code to run for a very long time. In order to run a small sample, please create a prototype file with the value 'TRUE' in ../../Analysis.
+
 ## More resources
 
 - Additional information about the Airbnb locations in [Amsterdam](http://insideairbnb.com/amsterdam/).
