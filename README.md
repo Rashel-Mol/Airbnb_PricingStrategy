@@ -80,6 +80,8 @@ install.packages("stm")
 install.packages("ggplot2")
 install.packages("ggraph")
 install.packages("igraph", type = "binary")
+install.packages("reshape2")
+install.packages("modelsummary")
 ```
 
 ### Collecting the data
