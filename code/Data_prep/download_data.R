@@ -17,6 +17,7 @@ files = list(c('listings.csv', "https://drive.google.com/file/d/1t6M7rsIsB8G7_Ds
 for (f in files) {
   cat(paste0('Downloading file: ', f, '...\n'))
   
+  drive_deauth()
   drive_download(
     file = f[2],
     path = paste0('../../data/', f[1]),
