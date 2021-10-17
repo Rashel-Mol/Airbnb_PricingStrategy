@@ -17,6 +17,8 @@ Concretely, this study investigates the relationship between price and negative 
 - Charging a higher price does not lead to more negative reviews, as expectations are likely to be met. 
 Eventually, there is also a possibility that there is no significant correlation between these two variables. 
 
+In addition to this main research question, we also investigate whether we can distinguish certain topics that appear in the reviews from the text analysis and what topics these are.
+
 With the results of this analysis, Airbnb hosts can decide upon which price to charge for their accommodation with the results of this study in mind. Carefully setting the price of an accommodation can prevent dissatisfied customers and possible accompanying negative consequences.
 
 ## Data
