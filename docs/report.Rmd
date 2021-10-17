@@ -2,8 +2,8 @@
 title: "Pricing Strategy Airbnb based on Negative Reviews"
 author: "Rashel Mol, Noa Beekmans, Astrid Raaijmakers, Pien Korteweg, Amber Vermeer"
 output:
-  pdf_document: default
   html_document: default
+  pdf_document: default
 ---
 
 ```{r setup, include=FALSE}
